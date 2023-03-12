@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Health policy price prediction</title>
+    <style>
+        body{
+            background-color:MediumSeaGreen;
+        }
+        .form{
+              display:flex;
+              margin-right:300px;
+              margin-left:150px;
+              text-align:center;
+        }
+        label{
+            display:inline-block;
+            width:400px;
+        }
+        button{
+            background-color:Tomato;
+            text-align:center
+        }
+        .bmi{
+            margin-left:200px;
+            margin-top:15px
+
+        }
+    </style>
+</head>
+<body>
+<h1 style="text-align:center" >Health policy price predictor:</h1>
+<p style="text-align:center">
+  THIS IS A HEALTH POLICY PRICE PREDICTOR PLEASE INPUT THE FOLLOWING DETAILS TO PREDICT YOUR HEALTH POLICY PRICE.
+</p><br>
+<div class="form">
+    <div>
+        <form method="post" action="{{url_for('predict')}}">
+        <div>
+            <label>AGE</label>
+            <input type="text" name="age" size="15"/> <br><br>
+        </div>
+
+        <div>
+            <label>BMI</label>
+            <input type="text" name="bmi" size="15"><br><br>
+        </div>
+
+        <div>
+            <label>Number of children</label>
+            <input type="text" name="children" size="15"><br><br>
+        </div>
+
+        <div>
+            <label>Do you smoke(1:YES , 0:NO )</label>
+            <input type="text" name="smoking" size="15"><br><br>
+        </div>
+
+        <div>
+            <label>Gender( 1: MALE 0: FEMALE)</label>
+            <input type="text" name="gender" size="15"><br><br>
+        </div>
+
+        <div>
+            <label>Please select the region you belong to</label><br><br>
+            <label>Type 1 if you belong to the respective region and 0 for others.</label><br><br>
+            <label>Northwest </label>
+            <input type="text" name="Northwest" size="15"><br><br>
+            <label>southeast </label>
+            <input type="text" name="southeast" size="15"><br><br>
+            <label>southwest </label>
+            <input type="text" name="southwest" size="15"><br><br>
+        </div><br>
+
+        <div>
+            <button type="submit">Predict Policy Price</button>
+        </div>
+    </form>
+    </div>
+
+    <div class="bmi">
+        <h1>BMI Calculator</h1>
+	    <p>Enter your weight in kg:</p>
+	    <input type="number" id="weight">
+	    <p>Enter your height in cm:</p>
+	    <input type="number" id="height">
+	    <br><br>
+	    <button onclick="calculateBMI()">Calculate BMI</button>
+	    <br><br>
+	    <p>Your BMI is: <span id="result"></span></p>
+
+	    <script>
+		function calculateBMI() {
+			let weight = document.getElementById("weight").value;
+			let height = document.getElementById("height").value;
+			let bmi = weight / ((height/100) ** 2);
+			document.getElementById("result").innerHTML = bmi.toFixed(2);
+		}
+	    </script>
+    </div>
+
+</div>
+
+<div>
+        <h1 style="text-align:center">{{prediction_text}}</h1>
+</div>
+
+</body>
+</html>
